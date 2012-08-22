@@ -34,7 +34,7 @@ function SphericalMercator(options) {
     this.Cc = cache[this.size].Cc;
     this.zc = cache[this.size].zc;
     this.Ac = cache[this.size].Ac;
-};
+}
 
 // Convert lon lat to screen pixel value
 //
@@ -174,11 +174,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined') {
 function guessTiles() {
     var tile_images;
 
-    var mm = document.getElementsByClassName('map-tile-loaded');
-    var leaf = document.getElementsByClassName('leaflet-tile');
-
-    if (mm.length) tile_images = mm;
-    else if (leaf.length) tile_images = leaf;
+    tile_images = document.getElementsByClassName('map-tile-loaded');
+    if (!tile_images.length) {
+    tile_images = document.getElementsByClassName('leaflet-tile');
+    if (!tile_images.length) {
+    tile_images = document.getElementsByClassName('olTileImage');
+    }}
 
     console.log('tiles found: ', tile_images.length);
     var coordinates = [];
@@ -209,6 +210,8 @@ function union(cs) {
 
 function loadZoom(bb) {
     var ifr = document.body.appendChild(document.createElement('iframe'));
+    ifr.style.width = '0px';
+    ifr.style.height = '0px';
     var p = 12;
 
     if ((bb[2] - bb[0]) > 0.01) {
@@ -224,11 +227,11 @@ function loadZoom(bb) {
     }
 
     ifr.setAttribute('src',
-                     'http://127.0.0.1:8111/load_and_zoom' +
-                     '?left=' + bb[0].toFixed(p) +
-                     '&top=' + bb[3].toFixed(p) +
-                     '&right=' + bb[2].toFixed(p) +
-                     '&bottom=' + bb[1].toFixed(p));
+        'http://127.0.0.1:8111/load_and_zoom' +
+        '?left=' + bb[0].toFixed(p) +
+        '&top=' + bb[3].toFixed(p) +
+        '&right=' + bb[2].toFixed(p) +
+        '&bottom=' + bb[1].toFixed(p));
 }
 
 function coordsToLL(cs) {
