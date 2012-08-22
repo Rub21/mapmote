@@ -183,7 +183,7 @@ function guessTiles() {
     tile_images = document.getElementsByTagName('img');
     }}}
 
-    console.log('tiles found: ', tile_images.length);
+    if (!tile_images.length) return alert('No images found on this page');
     var coordinates = [];
     for (var i = 0; i < tile_images.length; i++) {
         var img = tile_images[i];
@@ -206,8 +206,8 @@ function guessTiles() {
             });
         }
     }
-    console.log('coords found: ', coordinates.length);
 
+    if (!coordinates.length) return alert('No tiles found on this page');
     if (coordinates.length) coordsToLL(coordinates);
 }
 
@@ -258,7 +258,6 @@ function coordsToLL(cs) {
         bboxes.push(s.bbox(cs[i].x, cs[i].y, cs[i].z));
     }
 
-    console.log('bboxes.length', bboxes.length);
     if (bboxes.length) loadZoom(union(bboxes));
 }
 
