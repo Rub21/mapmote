@@ -179,18 +179,32 @@ function guessTiles() {
     tile_images = document.getElementsByClassName('leaflet-tile');
     if (!tile_images.length) {
     tile_images = document.getElementsByClassName('olTileImage');
-    }}
+    if (!tile_images.length) {
+    tile_images = document.getElementsByTagName('img');
+    }}}
 
     console.log('tiles found: ', tile_images.length);
     var coordinates = [];
     for (var i = 0; i < tile_images.length; i++) {
         var img = tile_images[i];
-        var coord = img.getAttribute('src').match(/(\d+)\/(\d+)\/(\d+)/);
-        if (coord) coordinates.push({
-            z: +coord[1],
-            x: +coord[2],
-            y: +coord[3]
-        });
+        if (img.getAttribute('src')) {
+            var coord = [];
+            console.log(img.getAttribute('src'));
+            coord = img.getAttribute('src').match(/(\d+)\/(\d+)\/(\d+)/);
+            if (!coord || !coord.length) {
+            // google.
+            var s = img.getAttribute('src');
+            var x = s.match(/x=(\d+)/),
+                y = s.match(/y=(\d+)/),
+                z = s.match(/z=(\d+)/);
+            if (x && y && z) coord = [0, z[1], x[1], y[1]];
+            }
+            if (coord && coord.length) coordinates.push({
+                z: +coord[1],
+                x: +coord[2],
+                y: +coord[3]
+            });
+        }
     }
     console.log('coords found: ', coordinates.length);
 
