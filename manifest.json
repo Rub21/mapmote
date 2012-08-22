@@ -1,8 +1,14 @@
 {
-  "name": "sling",
+  "name": "mapmote",
   "version": "0.0.1",
-  "description": "Tool for JOSM editing from anything",
+  "description": "Allows for editing JOSM based on Google Maps, Modest Maps, Leaflet, and OpenLayers maps",
   "manifest_version": 2,
+  "icons": {
+      "128": "icon/icon128.png",
+      "48": "icon/icon48.png",
+      "32": "icon/icon32.png",
+      "16": "icon/icon16.png"
+  },
   "browser_action": {
     "default_icon": "icon/toolbar.png"
   },
