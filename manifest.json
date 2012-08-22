@@ -1,0 +1,18 @@
+{
+  "name": "sling",
+  "version": "0.0.1",
+  "description": "Tool for JOSM editing from anything",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "icon/toolbar.png"
+  },
+  "background": {
+    "matches": ["<all_urls>"],
+    "scripts": ["actions.js"]
+  },
+  "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ]
+}
