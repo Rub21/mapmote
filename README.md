@@ -1,3 +1,5 @@
+![](https://raw.github.com/tmcw/mapmote/master/icon/icon128.png)
+
 # mapmote
 
 This is a tool for opening [JOSM](http://josm.openstreetmap.de/) from
