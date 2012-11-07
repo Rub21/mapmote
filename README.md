@@ -32,3 +32,7 @@ How it does this is a matter of extreme hackery; it detects and consumes
 tile URLs, and then constructs a bounding box from their coordinates.
 
 # License is BSD
+
+## See Also
+
+* [mapJumper](http://wiki.openstreetmap.org/wiki/MapJumper) brings you from a map to a 'hub' page then to another map.
