@@ -190,8 +190,7 @@
             var img = tile_images[i];
             if (img.getAttribute('src')) {
                 var coord = [];
-                console.log(img.getAttribute('src'));
-                coord = img.getAttribute('src').match(/(\d+)\/(\d+)\/(\d+)/);
+                coord = img.getAttribute('src').match(/\/(\d+)\/(\d+)\/(\d+)/);
                 if (!coord || !coord.length) {
                 // google.
                 var s = img.getAttribute('src');
