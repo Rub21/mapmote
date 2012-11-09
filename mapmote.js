@@ -166,14 +166,8 @@
 
     })();
 
-    if (typeof module !== 'undefined' && typeof exports !== 'undefined') {
-        module.exports = exports = SphericalMercator;
-    }
-
-
-
     function guessTiles() {
-        var tile_images;
+        var tile_images, i = 0;
 
         tile_images = document.getElementsByClassName('map-tile-loaded');
         if (!tile_images.length) {
@@ -181,22 +175,26 @@
         if (!tile_images.length) {
         tile_images = document.getElementsByClassName('olTileImage');
         if (!tile_images.length) {
-        tile_images = document.getElementsByTagName('img');
+        var imgs = document.getElementsByTagName('img');
+        var images = document.getElementsByTagName('image');
+        tile_images = [];
+        for (i = 0; i < imgs.length; i++) tile_images.push(imgs[i]);
+        for (i = 0; i < images.length; i++) tile_images.push(images[i]);
         }}}
 
         if (!tile_images.length) return alert('No images found on this page');
         var coordinates = [];
-        for (var i = 0; i < tile_images.length; i++) {
+        for (i = 0; i < tile_images.length; i++) {
             var img = tile_images[i];
-            if (img.getAttribute('src')) {
+            var src = img.getAttribute('src') || img.getAttribute('href');
+            if (src) {
                 var coord = [];
-                coord = img.getAttribute('src').match(/\/(\d+)\/(\d+)\/(\d+)/);
+                coord = src.match(/\/(\d+)\/(\d+)\/(\d+)/);
                 if (!coord || !coord.length) {
                 // google.
-                var s = img.getAttribute('src');
-                var x = s.match(/x=(\d+)/),
-                    y = s.match(/y=(\d+)/),
-                    z = s.match(/z=(\d+)/);
+                var x = src.match(/x=(\d+)/),
+                    y = src.match(/y=(\d+)/),
+                    z = src.match(/z=(\d+)/);
                 if (x && y && z) coord = [0, z[1], x[1], y[1]];
                 }
                 if (coord && coord.length) coordinates.push({

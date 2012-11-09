@@ -10,7 +10,7 @@
 4. Locate the extension file on your computer and drag the file onto the Extensions page.
 5. Click Install.
 
-**OR** [see this bookmarklet version](bookmarklet) and drag & drop to your
+**OR** [see this bookmarklet version](http://bl.ocks.org/d/3436481/) and drag & drop to your
 bookmarks bar.
 
 ## Using
